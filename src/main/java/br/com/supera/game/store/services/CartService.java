@@ -1,6 +1,9 @@
 package br.com.supera.game.store.services;
 
 import br.com.supera.game.store.entities.Cart;
+import br.com.supera.game.store.entities.Item;
+import br.com.supera.game.store.entities.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -8,7 +11,7 @@ import javax.annotation.Resource;
 @Service
 public class CartService {
 
-    @Resource(name = "cartSession")
+    @Autowired
     Cart cart;
 
     public void addItem(){
@@ -18,4 +21,18 @@ public class CartService {
 
     }
 
+    public void addCart(Product product, int quantity) {
+
+        Item item = new Item(product,quantity);
+        cart.addItemCart(item);
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void removeCart(Product product, int quantity) {
+        Item item = new Item(product,quantity);
+        cart.removeItemCart(item);
+    }
 }

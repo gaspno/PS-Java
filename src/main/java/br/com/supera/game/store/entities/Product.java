@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
+
 import java.math.BigDecimal;
 import javax.persistence.*;
 
@@ -11,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@Proxy(lazy = false)
 @NoArgsConstructor
 public class Product {
 
