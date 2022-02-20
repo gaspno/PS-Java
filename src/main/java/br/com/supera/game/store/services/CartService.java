@@ -1,12 +1,10 @@
 package br.com.supera.game.store.services;
 
-import br.com.supera.game.store.entities.Cart;
+import br.com.supera.game.store.utils.Cart;
 import br.com.supera.game.store.entities.Item;
 import br.com.supera.game.store.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 @Service
 public class CartService {

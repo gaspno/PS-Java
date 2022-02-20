@@ -1,13 +1,14 @@
 package br.com.supera.game.store.services;
 
 import br.com.supera.game.store.dto.CheckoutDTO;
-import br.com.supera.game.store.entities.Cart;
+import br.com.supera.game.store.utils.Cart;
 import br.com.supera.game.store.entities.Checkout;
 import br.com.supera.game.store.entities.Item;
 import br.com.supera.game.store.repositories.CheckoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,9 +27,11 @@ public class CheckoutService {
         return checkoutDto;
     }
 
+    @Transactional
     public Checkout saveCheckout(){
         Checkout checkout=getCheckout();
         Checkout updateCheckout=checkoutRepository.save(checkout);
+        cart.removeAll();
         return updateCheckout;
     }
 
@@ -53,8 +56,6 @@ public class CheckoutService {
         checkout.setFrete(frete);
         checkout.setTotal(total);
         checkout.getItems().addAll(listaItems);
-
         return checkout;
-
     }
 }

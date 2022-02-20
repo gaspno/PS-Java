@@ -1,5 +1,6 @@
-package br.com.supera.game.store.entities;
+package br.com.supera.game.store.utils;
 
+import br.com.supera.game.store.entities.Item;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 

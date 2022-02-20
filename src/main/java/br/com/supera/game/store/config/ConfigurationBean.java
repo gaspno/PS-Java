@@ -1,7 +1,7 @@
 package br.com.supera.game.store.config;
 
 
-import br.com.supera.game.store.entities.Cart;
+import br.com.supera.game.store.utils.Cart;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.SessionScope;
