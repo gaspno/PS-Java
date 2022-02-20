@@ -1,6 +1,8 @@
 package br.com.supera.game.store.controllers;
 
+import br.com.supera.game.store.dto.CheckoutDTO;
 import br.com.supera.game.store.entities.Cart;
+import br.com.supera.game.store.entities.Checkout;
 import br.com.supera.game.store.entities.Product;
 import br.com.supera.game.store.repositories.ProductRepository;
 import br.com.supera.game.store.services.CartService;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+
 
 
 @RestController
@@ -34,19 +36,34 @@ public class GameStoreController {
 
     
     @RequestMapping(value="/checkout",method= RequestMethod.GET)
-    public Cart getCheckout(){
-       // checkoutService.getCheckoutInfo();
+    public CheckoutDTO getCheckout(){
+        checkoutService.getCheckoutInfo();
+        return checkoutService.getCheckoutInfo();
+    }
+
+    @RequestMapping(value="/checkout",method= RequestMethod.POST)
+    public CheckoutDTO saveCheckout(){
+        CheckoutDTO dto= new CheckoutDTO(checkoutService.saveCheckout());
+        cart.removeAll();
+        return dto;
+    }
+
+    @RequestMapping(value="/cart",method= RequestMethod.GET)
+    public Cart getCart(){
+
         return cartService.getCart();
     }
-    @RequestMapping(value="/produtos/add",method= RequestMethod.POST)
-    public void addCartItem(@RequestParam Long idMovie,@RequestParam int quantity){
-        Product product =productRepository.getById(idMovie);
+
+
+    @RequestMapping(value="/produtos",method= RequestMethod.POST)
+    public void addCartItem(@RequestParam Long id,@RequestParam int quantity){
+        Product product =productRepository.getById(id);
         cartService.addCart(product,quantity);
 
     }
-    @RequestMapping(value="/produtos/remove",method= RequestMethod.DELETE)
-    public void removeCartItem(@RequestParam Long idMovie,@RequestParam int quantity){
-        Product product =productRepository.getById(idMovie);
+    @RequestMapping(value="/produtos",method= RequestMethod.DELETE)
+    public void removeCartItem(@RequestParam Long id,@RequestParam int quantity){
+        Product product =productRepository.getById(id);
         cartService.removeCart(product,quantity);
 
     }

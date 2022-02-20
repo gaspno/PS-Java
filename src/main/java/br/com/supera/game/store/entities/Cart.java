@@ -36,6 +36,7 @@ public class Cart {
     }
 
 
-
-
+    public void removeAll() {
+        lista.removeAll(lista);
+    }
 }

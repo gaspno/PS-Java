@@ -14,12 +14,6 @@ public class CartService {
     @Autowired
     Cart cart;
 
-    public void addItem(){
-
-    }
-    public void removeItem(){
-
-    }
 
     public void addCart(Product product, int quantity) {
 
